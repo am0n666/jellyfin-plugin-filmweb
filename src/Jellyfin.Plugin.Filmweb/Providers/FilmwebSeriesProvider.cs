@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Jellyfin.Data.Enums;
 using Jellyfin.Plugin.Filmweb.Api;
 using MediaBrowser.Controller.Entities;
 using MediaBrowser.Controller.Entities.TV;

@@ -6,15 +6,15 @@ echo  Jellyfin Filmweb Plugin - Windows Build Script
 echo ====================================================
 
 where dotnet >nul 2>&1
-if %errorlevel% neq 0 (
-    echo [ERROR] .NET SDK (dotnet) nie zostal znaleziony w sciezce PATH!
+if errorlevel 1 (
+    echo [ERROR] .NET SDK nie zostal znaleziony w sciezce PATH!
     echo Pobierz i zainstaluj .NET 8.0 SDK: https://dotnet.microsoft.com/download/dotnet/8.0
     pause
     exit /b 1
 )
 
-set CONFIGURATION=Release
-set OUTPUT_DIR=%~dp0dist\Filmweb
+set "CONFIGURATION=Release"
+set "OUTPUT_DIR=%~dp0dist\Filmweb"
 
 if exist "%OUTPUT_DIR%" (
     echo Czyszczenie katalogu wyjsciowego %OUTPUT_DIR%...
@@ -24,10 +24,10 @@ if exist "%OUTPUT_DIR%" (
 echo Kompilacja projektu w trybie %CONFIGURATION%...
 dotnet publish "%~dp0src\Jellyfin.Plugin.Filmweb\Jellyfin.Plugin.Filmweb.csproj" -c %CONFIGURATION% -o "%OUTPUT_DIR%" --nologo
 
-if %errorlevel% neq 0 (
+if errorlevel 1 (
     echo [ERROR] Kompilacja zakonczyla sie bledem!
     pause
-    exit /b %errorlevel%
+    exit /b 1
 )
 
 echo.
